@@ -26,7 +26,8 @@ export default class PasswordChecker extends React.Component {
             <div className="password">
                 <input onChange={this.handlePasswordChange} 
                         type="password" 
-                        value={password}></input>
+                        value={password}
+                        placeholder="Enter Password"></input>
                 <div className="progress">
                     <div className="bar" style={{width: pwScorePercent+'%'}}></div>
                 </div>

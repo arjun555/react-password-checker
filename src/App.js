@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>How Strong is your password?</h1>
+        <h1>Password Strength</h1>
       </header>
       <main>
         <PasswordChecker></PasswordChecker>
