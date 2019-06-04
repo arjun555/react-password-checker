@@ -24,26 +24,23 @@ export default class PasswordChecker extends React.Component {
     updateLabelMessage = (strength) => {
         let message = ''
         switch(strength.score){
-            case 0:
-                message = 'password score is 0'
-                break
             case 1:
-                message = 'password score is 1'
+                message = 'is that it.'
                 break
             case 2:
-                message = 'password score is 2'
+                message = 'be more creative!'
                 break
             case 3:
-                message = 'password score is 3'
+                message = 'kinda average'
                 break
             case 4:
-                message = 'password score is 4'
+                message = 'thats better'
                 break
             case 5:
-                message = 'password score is 5'
+                message = 'almost perfect...'
                 break
             case 6:
-                message = 'password score is 6'
+                message = 'that is the chuck norris of passwords'
                 break
             default:
                 message = ''
@@ -57,20 +54,41 @@ export default class PasswordChecker extends React.Component {
         })
     }
 
+    updateBarColor = (score) => {
+        switch(score){
+            case 0:
+            case 1:
+            case 2:
+                return '#acbed8'
+            case 3: 
+                return '#f2d398'
+            case 4:
+            case 5:
+                return '#d78521'
+            case 6:
+                return '#de1a1a'
+            default: 
+                return ''
+        }
+    }
+
     render(){
         const password = this.state.password
+        const message = this.state.input.textContent
         const pwScorePercent = (Number(this.state.strength.score/this.state.strength.maxScore)*100).toString()
+        const color = this.updateBarColor(this.state.strength.score)
         return(
             <div className="password">
-                <label className="input-label">{this.state.input.textContent}</label>
-                <input onChange={this.handlePasswordChange} 
-                        onFocus={this.handleInputFocus}
+                <input onChange={this.handlePasswordChange}
                         type="password" 
                         value={password}
                         placeholder="Enter Password"></input>
                 <div className="progress">
-                    <div className="bar" style={{width: pwScorePercent+'%'}}></div>
+                    <div className="bar" 
+                            style={{width: pwScorePercent+'%', backgroundColor: color}}></div>
                 </div>
+                <label className="input-label"
+                        style={{visibility: message ? 'visible' : 'hidden'}}>{message}</label>
             </div>
         )
     }

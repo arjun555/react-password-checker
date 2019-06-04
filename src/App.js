@@ -13,7 +13,6 @@ function App() {
       <main>
         <PasswordChecker></PasswordChecker>
       </main>
-      <footer>footer</footer>
     </div>
   );
 }
